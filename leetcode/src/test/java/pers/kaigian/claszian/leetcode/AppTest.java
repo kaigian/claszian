@@ -1,4 +1,4 @@
-package com.huice.platform.waybill.erp2;
+package pers.kaigian.claszian.leetcode;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

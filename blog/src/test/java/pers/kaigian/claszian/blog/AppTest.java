@@ -1,4 +1,4 @@
-package pers.kaigian;
+package pers.kaigian.claszian.blog;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

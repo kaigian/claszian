@@ -4,25 +4,14 @@
     <parent>
         <groupId>pers.kaigian</groupId>
         <artifactId>claszian</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
+    <groupId>pers.kaigian.claszian</groupId>
     <artifactId>blog</artifactId>
+    <version>${revision}</version>
     <packaging>jar</packaging>
+    <name>blog</name>
+    <description>claszian blog</description>
 
-    <name>doc</name>
-    <url>http://maven.apache.org</url>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 </project>

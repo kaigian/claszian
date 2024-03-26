@@ -1,4 +1,4 @@
-package pers.kaigian;
+package pers.kaigian.claszian.leetcode;
 
 /**
  * Hello world!
