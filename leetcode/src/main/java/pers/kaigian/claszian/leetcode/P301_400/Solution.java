@@ -1,4 +1,4 @@
-package pers.kaigian.claszian.leetcode.P331_340;
+package pers.kaigian.claszian.leetcode.P301_400;
 
 import java.util.Stack;
 
