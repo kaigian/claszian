@@ -59,9 +59,27 @@ public class Solution {
         return -1;
     }
 
+    /**
+     * P69:X的平方根
+     */
+    public int mySqrt(int x) {
+        int left = 0, right = x, ans = x;
+        while (left <= right) {
+            int mid = left + ((right - left) / 2);
+            if ((long) mid * mid > x) {
+                ans = mid - 1;
+                right = mid - 1;
+            } else if ((long) mid * mid < x) {
+                left = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
-        int[] nums = { 1, 3 };
         Solution solution = new Solution();
-        System.out.println(solution.searchInsert(nums, 0));
+        System.out.println(solution.mySqrt(2147395599));
     }
 }
