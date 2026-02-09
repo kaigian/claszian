@@ -27,4 +27,28 @@ public class Solution {
         }
         return stack.isEmpty();
     }
+
+    /**
+     * P367:有效的完全平方数
+     */
+    public boolean isPerfectSquare(int num) {
+        int left = 0, right = num;
+        while (left <= right) {
+            int mid = left + ((right - left) >> 1);
+            long tmp = (long) mid * mid;
+            if (tmp > num) {
+                right = mid - 1;
+            } else if (tmp < num) {
+                left = mid + 1;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.isPerfectSquare(2147483647));
+    }
 }
