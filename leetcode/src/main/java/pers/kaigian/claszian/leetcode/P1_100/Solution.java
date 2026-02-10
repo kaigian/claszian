@@ -2,6 +2,26 @@ package pers.kaigian.claszian.leetcode.P1_100;
 
 public class Solution {
     /**
+     * P26:删除排序数组中的重复项
+     */
+    public int removeDuplicates(int[] nums) {
+        if (nums.length == 1) {
+            return 1;
+        }
+        int slow = 1, fast = 1;
+        while (fast < nums.length) {
+            if (nums[fast] == nums[fast - 1]) {
+                fast++;
+                continue;
+            }
+            nums[slow] = nums[fast];
+            slow++;
+            fast++;
+        }
+        return slow;
+    }
+
+    /**
      * P27:移除元素
      */
     public int removeElement(int[] nums, int val) {
