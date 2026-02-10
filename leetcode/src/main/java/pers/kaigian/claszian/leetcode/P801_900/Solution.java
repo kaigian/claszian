@@ -10,6 +10,53 @@ import java.util.Map;
  */
 public class Solution {
     /**
+     * P844:比较含退格的字符串
+     */
+    public boolean backspaceCompare(String s, String t) {
+        int idxS = s.length() - 1, idxT = t.length() - 1, skipS = 0, skipT = 0;
+        while (idxS >= 0 || idxT >= 0) {
+            while (idxS >= 0) {
+                if (s.charAt(idxS) == '#') {
+                    skipS++;
+                    idxS--;
+                    continue;
+                } else {
+                    if (skipS == 0) {
+                        break;
+                    }
+                    skipS--;
+                    idxS--;
+                }
+            }
+            while (idxT >= 0) {
+                if (t.charAt(idxT) == '#') {
+                    skipT++;
+                    idxT--;
+                    continue;
+                } else {
+                    if (skipT == 0) {
+                        break;
+                    }
+                    skipT--;
+                    idxT--;
+                }
+            }
+            if (idxS < 0 && idxT < 0) {
+                return true;
+            }
+            if ((idxS >= 0 && idxT < 0) || (idxT >= 0 && idxS < 0)) {
+                return false;
+            }
+            if (s.charAt(idxS) != t.charAt(idxT)) {
+                return false;
+            }
+            idxS--;
+            idxT--;
+        }
+        return true;
+    }
+
+    /**
      * P894
      */
     public List<TreeNode> allPossibleFBT(int n) {
@@ -49,5 +96,11 @@ public class Solution {
         newNode.left = deepCopy(root.left);
         newNode.right = deepCopy(root.right);
         return newNode;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        String s = "nzp#o#g", t = "b#nzp#o#g";
+        System.out.println(solution.backspaceCompare(s, t));
     }
 }
