@@ -2,6 +2,29 @@ package pers.kaigian.claszian.leetcode.P1_100;
 
 public class Solution {
     /**
+     * P27:移除元素
+     */
+    public int removeElement(int[] nums, int val) {
+        int left = 0, right = nums.length - 1;
+        while (left < nums.length && right >= 0 && left <= right) {
+            while (nums[right] == val) {
+                right--;
+            }
+            while (nums[left] != val) {
+                left++;
+            }
+            if (left < right) {
+                int tmp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = tmp;
+                left++;
+                right--;
+            }
+        }
+        return left;
+    }
+
+    /**
      * P34:在排序数组中查找元素的第一个和最后一个位置
      */
     public int[] searchRange(int[] nums, int target) {
