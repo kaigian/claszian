@@ -1,5 +1,8 @@
 package pers.kaigian.claszian.leetcode.P1_100;
 
+import java.util.*;
+import java.util.Map.Entry;
+
 public class Solution {
     /**
      * P26:删除排序数组中的重复项
@@ -121,8 +124,60 @@ public class Solution {
         return ans;
     }
 
+    /**
+     * P76:最小覆盖子串
+     */
+    public String minWindow(String s, String t) {
+        if (s.length() < t.length()) {
+            return "";
+        }
+        Map<Character, Integer> tCntMap = new HashMap<>();
+        for (int i = 0; i < t.length(); i++) {
+            char ch = t.charAt(i);
+            tCntMap.put(ch, tCntMap.getOrDefault(ch, 0) + 1);
+        }
+        int left = 0, right = 0, len = 0;
+        String ans = "";
+        boolean needPut = true;
+        while (right < s.length()) {
+            if (left > right) {
+                right++;
+                continue;
+            }
+            char rightChar = s.charAt(right);
+            if (tCntMap.containsKey(rightChar) && needPut) {
+                tCntMap.put(rightChar, tCntMap.get(rightChar) - 1);
+            }
+            if (!checkMinWindow(tCntMap)) {
+                right++;
+                needPut = true;
+            } else {
+                if (len == 0 || len > right - left + 1) {
+                    len = right - left + 1;
+                    ans = s.substring(left, right + 1);
+                }
+                char leftChar = s.charAt(left);
+                if (tCntMap.containsKey(leftChar)) {
+                    tCntMap.put(leftChar, tCntMap.get(leftChar) + 1);
+                }
+                left++;
+                needPut = false;
+            }
+        }
+        return ans;
+    }
+
+    private boolean checkMinWindow(Map<Character, Integer> map) {
+        for (Integer val : map.values()) {
+            if (val > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        System.out.println(solution.mySqrt(2147395599));
+        System.out.println(solution.minWindow("ADOBECODEBANC", "ABC"));
     }
 }
