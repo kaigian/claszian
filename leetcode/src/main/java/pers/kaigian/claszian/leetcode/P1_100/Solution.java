@@ -1,7 +1,6 @@
 package pers.kaigian.claszian.leetcode.P1_100;
 
 import java.util.*;
-import java.util.Map.Entry;
 
 public class Solution {
     /**
@@ -103,6 +102,57 @@ public class Solution {
             }
         }
         return -1;
+    }
+
+    /**
+     * P59:螺旋矩阵 II
+     */
+    public int[][] generateMatrix(int n) {
+        int[][] result = new int[n][n];
+        int num = 1, left = 0, right = n - 1, top = 0, bottom = n - 1, i = 0, j = 0;
+        boolean toRight = true, toBottom = false, toLeft = false, toTop = false;
+        while (num <= n * n) {
+            result[i][j] = num;
+            num++;
+            if (toRight) {
+                if (j < right) {
+                    j++;
+                } else {
+                    i++;
+                    top++;
+                    toRight = false;
+                    toBottom = true;
+                }
+            } else if (toBottom) {
+                if (i < bottom) {
+                    i++;
+                } else {
+                    j--;
+                    right--;
+                    toBottom = false;
+                    toLeft = true;
+                }
+            } else if (toLeft) {
+                if (j > left) {
+                    j--;
+                } else {
+                    i--;
+                    bottom--;
+                    toLeft = false;
+                    toTop = true;
+                }
+            } else if (toTop) {
+                if (i > top) {
+                    i--;
+                } else {
+                    j++;
+                    left++;
+                    toTop = false;
+                    toRight = true;
+                }
+            }
+        }
+        return result;
     }
 
     /**
