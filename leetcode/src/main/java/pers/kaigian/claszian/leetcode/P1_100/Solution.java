@@ -105,6 +105,69 @@ public class Solution {
     }
 
     /**
+     * P54:螺旋矩阵
+     */
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
+        int m = matrix.length, n = matrix[0].length;
+        int left = 0, right = n - 1, top = 0, bottom = m - 1, i = 0, j = 0;
+        boolean toRight = true, toBottom = false, toLeft = false, toTop = false;
+        while (true) {
+            result.add(matrix[i][j]);
+            if (toRight) {
+                if (j < right) {
+                    j++;
+                } else {
+                    i++;
+                    if (i > bottom) {
+                        break;
+                    }
+                    top++;
+                    toRight = false;
+                    toBottom = true;
+                }
+            } else if (toBottom) {
+                if (i < bottom) {
+                    i++;
+                } else {
+                    j--;
+                    if (j < left) {
+                        break;
+                    }
+                    right--;
+                    toBottom = false;
+                    toLeft = true;
+                }
+            } else if (toLeft) {
+                if (j > left) {
+                    j--;
+                } else {
+                    i--;
+                    if (i < top) {
+                        break;
+                    }
+                    bottom--;
+                    toLeft = false;
+                    toTop = true;
+                }
+            } else if (toTop) {
+                if (i > top) {
+                    i--;
+                } else {
+                    j++;
+                    if (j > right) {
+                        break;
+                    }
+                    left++;
+                    toTop = false;
+                    toRight = true;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
      * P59:螺旋矩阵 II
      */
     public int[][] generateMatrix(int n) {
@@ -228,6 +291,7 @@ public class Solution {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        System.out.println(solution.minWindow("ADOBECODEBANC", "ABC"));
+        int[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+        System.out.println(solution.spiralOrder(matrix));
     }
 }
